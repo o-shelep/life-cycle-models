@@ -1,0 +1,136 @@
+@use '../../styles/variables' as v;
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: v.$sidebar-bg;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  flex-shrink: 0;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    .logo-icon {
+      color: v.$sidebar-text;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: v.$sidebar-text;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: v.$radius-sm;
+    color: v.$sidebar-muted;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all v.$transition;
+    text-decoration: none;
+
+    .nav-icon {
+      width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: v.$sidebar-text;
+    }
+
+    &.active {
+      background: rgba(v.$accent, 0.15);
+      color: v.$accent;
+
+      .nav-icon {
+        filter: none;
+      }
+    }
+  }
+
+  &__footer {
+    padding: 16px 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(v.$accent, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: v.$accent;
+    flex-shrink: 0;
+  }
+
+  &__username {
+    font-size: 13px;
+    font-weight: 500;
+    color: v.$sidebar-text;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border-radius: v.$radius-sm;
+    color: v.$sidebar-muted;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all v.$transition;
+    cursor: pointer;
+    width: 100%;
+    background: transparent;
+    border: none;
+
+    &:hover {
+      background: rgba(v.$danger, 0.12);
+      color: v.$danger;
+    }
+
+    .logout-icon {
+      font-size: 16px;
+    }
+  }
+}

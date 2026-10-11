@@ -1,0 +1,35 @@
+@use '../../styles/variables' as v;
+
+.star-rating {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+
+  &__star {
+    font-size: 18px;
+    line-height: 1;
+    cursor: default;
+    transition: transform v.$transition;
+    color: v.$border;
+
+    &--filled {
+      color: v.$accent;
+    }
+
+    &--interactive {
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &--sm &__star {
+    font-size: 13px;
+  }
+
+  &--lg &__star {
+    font-size: 24px;
+  }
+}

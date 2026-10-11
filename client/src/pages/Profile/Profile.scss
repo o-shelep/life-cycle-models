@@ -1,0 +1,166 @@
+@use '../../styles/variables' as v;
+
+.profile-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: v.$bg-primary;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 36px 40px 28px;
+    background: v.$bg-secondary;
+    border-bottom: 1.5px solid v.$border;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, v.$accent, v.$accent-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(v.$accent, 0.35);
+    letter-spacing: -1px;
+  }
+
+  &__header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__username {
+    font-size: 24px;
+    font-weight: 700;
+    color: v.$text-primary;
+    letter-spacing: -0.3px;
+  }
+
+  &__label {
+    font-size: 13px;
+    color: v.$text-light;
+    font-weight: 400;
+  }
+
+  &__body {
+    flex: 1;
+    padding: 32px 40px;
+    max-width: 540px;
+    width: 100%;
+  }
+}
+
+.profile-card {
+  background: v.$bg-secondary;
+  border-radius: v.$radius-md;
+  border: 1.5px solid v.$border;
+  box-shadow: v.$shadow-sm;
+  padding: 28px 28px 24px;
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: v.$text-primary;
+    margin-bottom: 20px;
+    letter-spacing: -0.2px;
+  }
+
+  &__success {
+    padding: 10px 14px;
+    background: rgba(#34C759, 0.1);
+    border: 1px solid rgba(#34C759, 0.3);
+    border-radius: v.$radius-sm;
+    font-size: 13px;
+    color: #219a3d;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  &__error {
+    padding: 10px 14px;
+    background: rgba(v.$danger, 0.08);
+    border: 1px solid rgba(v.$danger, 0.25);
+    border-radius: v.$radius-sm;
+    font-size: 13px;
+    color: v.$danger;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: v.$border;
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: 500;
+      color: v.$text-light;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  &__optional {
+    font-size: 11px;
+    font-weight: 400;
+    color: v.$text-light;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+
+  &__save-btn {
+    padding: 10px 24px;
+    background: v.$accent;
+    color: #fff;
+    border: none;
+    border-radius: v.$radius-sm;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all v.$transition;
+
+    &:hover {
+      background: v.$accent-dark;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(v.$accent, 0.35);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}

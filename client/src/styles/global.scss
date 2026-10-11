@@ -1,0 +1,185 @@
+@use 'variables' as v;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Urbanist', sans-serif;
+  background-color: v.$bg-primary;
+  color: v.$text-primary;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: v.$radius-sm;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all v.$transition;
+  cursor: pointer;
+
+  &--primary {
+    background: v.$accent;
+    color: #fff;
+
+    &:hover {
+      background: v.$accent-dark;
+      transform: translateY(-1px);
+      box-shadow: v.$shadow-sm;
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    border: 1.5px solid v.$border;
+    color: v.$text-secondary;
+
+    &:hover {
+      border-color: v.$accent;
+      color: v.$accent;
+    }
+  }
+
+  &--danger {
+    background: v.$danger;
+    color: #fff;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: v.$text-secondary;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: v.$text-primary;
+    }
+  }
+}
+
+.form-optional {
+  font-size: 11px;
+  font-weight: 400;
+  color: v.$text-light;
+  margin-left: 4px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    color: v.$text-secondary;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 10px 14px;
+    border: 1.5px solid v.$border;
+    border-radius: v.$radius-sm;
+    font-size: 14px;
+    color: v.$text-primary;
+    background: v.$bg-secondary;
+    transition: border-color v.$transition;
+    outline: none;
+
+    &:focus {
+      border-color: v.$accent;
+    }
+
+    &::placeholder {
+      color: v.$text-light;
+    }
+  }
+
+  select {
+    cursor: pointer;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+}
+
+.error-message {
+  color: v.$danger;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  &--read {
+    background: rgba(v.$status-read, 0.12);
+    color: v.$status-read;
+  }
+
+  &--inProgress {
+    background: rgba(v.$status-progress, 0.12);
+    color: v.$status-progress;
+  }
+
+  &--onPlan {
+    background: rgba(v.$status-plan, 0.12);
+    color: v.$status-plan;
+  }
+}

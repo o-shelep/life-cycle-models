@@ -1,0 +1,206 @@
+@use '../../styles/variables' as v;
+
+.authors-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__header {
+    padding: 28px 32px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-bottom: 1px solid v.$border;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: v.$text-primary;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: v.$accent;
+    color: #fff;
+    border: none;
+    border-radius: v.$radius-sm;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all v.$transition;
+
+    &:hover {
+      background: v.$accent-dark;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(v.$accent, 0.35);
+    }
+  }
+
+  &__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px 32px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    color: v.$text-light;
+    text-align: center;
+
+    .empty-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: v.$text-secondary;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    font-size: 14px;
+    color: v.$text-light;
+  }
+}
+
+.author-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: v.$bg-secondary;
+  border-radius: v.$radius-md;
+  border: 1.5px solid v.$border;
+  box-shadow: v.$shadow-sm;
+  transition: all v.$transition;
+
+  &:hover {
+    border-color: rgba(v.$accent, 0.25);
+    box-shadow: v.$shadow-md;
+  }
+
+  &__avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(v.$accent, 0.15), rgba(v.$accent, 0.25));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: v.$accent-dark;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: v.$text-primary;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 6px;
+
+    button {
+      width: 34px;
+      height: 34px;
+      border-radius: v.$radius-sm;
+      border: 1.5px solid v.$border;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: all v.$transition;
+      color: v.$text-secondary;
+
+      &:hover {
+        &.edit-btn {
+          border-color: v.$accent;
+          background: rgba(v.$accent, 0.08);
+          color: v.$accent;
+        }
+
+        &.delete-btn {
+          border-color: v.$danger;
+          background: rgba(v.$danger, 0.08);
+          color: v.$danger;
+        }
+      }
+    }
+  }
+}
+
+.author-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+
+    button {
+      padding: 10px 20px;
+      border-radius: v.$radius-sm;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all v.$transition;
+
+      &.btn-cancel {
+        background: transparent;
+        border: 1.5px solid v.$border;
+        color: v.$text-secondary;
+
+        &:hover {
+          border-color: v.$text-secondary;
+          color: v.$text-primary;
+        }
+      }
+
+      &.btn-save {
+        background: v.$accent;
+        border: none;
+        color: #fff;
+
+        &:hover { background: v.$accent-dark; }
+        &:disabled { opacity: 0.6; cursor: not-allowed; }
+      }
+    }
+  }
+}
