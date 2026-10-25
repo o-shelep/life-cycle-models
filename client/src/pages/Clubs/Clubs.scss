@@ -340,3 +340,57 @@
     flex-wrap: wrap;
   }
 }
+
+// ── Members management ───────────────────────────────────────────────────────
+.club-members {
+  &__invite {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    input {
+      flex: 1 1 160px;
+      min-width: 0;
+      padding: 9px 12px;
+      border: 1.5px solid v.$border;
+      border-radius: v.$radius-sm;
+      font-size: 14px;
+      outline: none;
+      &:focus { border-color: v.$accent; }
+    }
+  }
+
+  &__msg {
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: v.$radius-sm;
+
+    &--ok { background: rgba(v.$status-read, 0.1); color: #248A3D; }
+    &--error { background: rgba(v.$danger, 0.08); color: v.$danger; }
+  }
+}
+
+.member-list__role-select {
+  font-size: 12px;
+  padding: 3px 6px;
+  border: 1.5px solid v.$border;
+  border-radius: v.$radius-sm;
+  background: v.$bg-secondary;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: v.$radius-sm;
+  border: 1.5px solid v.$border;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: v.$text-secondary;
+  flex-shrink: 0;
+  transition: all v.$transition;
+
+  &--ok:hover { border-color: v.$status-read; color: v.$status-read; }
+  &--danger:hover { border-color: v.$danger; color: v.$danger; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
