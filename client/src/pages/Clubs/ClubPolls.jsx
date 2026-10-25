@@ -1,16 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Vote, Check, Trophy } from 'lucide-react';
 import api from '../../api/axios';
+import { plural } from './constants';
 
 const REFRESH_MS = 15000;
-
-function votesLabel(n) {
-  const last = n % 10;
-  const lastTwo = n % 100;
-  if (last === 1 && lastTwo !== 11) return `${n} голос`;
-  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) return `${n} голоси`;
-  return `${n} голосів`;
-}
 
 export default function ClubPolls({ club, onClosed }) {
   const [polls, setPolls] = useState([]);
@@ -104,7 +97,7 @@ export default function ClubPolls({ club, onClosed }) {
       ) : (
         <>
           <p className="club-polls__title">
-            {active.title} · {votesLabel(active.total_votes)}
+            {active.title} · {plural(active.total_votes, ['голос', 'голоси', 'голосів'])}
             {active.my_vote ? ' · ваш голос враховано' : ''}
           </p>
 

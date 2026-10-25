@@ -34,3 +34,12 @@ export function formatDate(iso) {
   const [y, m, d] = iso.split('-');
   return `${d}.${m}.${y}`;
 }
+
+// Ukrainian plural form: plural(3, ['відгук', 'відгуки', 'відгуків']) -> '3 відгуки'
+export function plural(n, [one, few, many]) {
+  const last = n % 10;
+  const lastTwo = n % 100;
+  if (last === 1 && lastTwo !== 11) return `${n} ${one}`;
+  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) return `${n} ${few}`;
+  return `${n} ${many}`;
+}
