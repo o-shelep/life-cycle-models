@@ -239,6 +239,7 @@
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: 20px;
     align-content: start;
+    align-items: start;
 
     @media (max-width: 900px) { grid-template-columns: minmax(0, 1fr); }
   }
@@ -544,4 +545,116 @@
   &--planned { background: rgba(v.$accent, 0.15); color: v.$accent-dark; }
   &--proposed { background: rgba(v.$status-plan, 0.15); color: v.$text-secondary; }
   &--done { background: rgba(v.$status-read, 0.12); color: #248A3D; }
+}
+
+// ── Polls ─────────────────────────────────────────────────────────────────────
+.club-polls {
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    text-align: center;
+    color: v.$text-light;
+    font-size: 14px;
+
+    form { width: 100%; max-width: 460px; }
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: v.$text-secondary;
+  }
+
+  &__history {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: v.$text-secondary;
+    }
+  }
+}
+
+.poll-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.poll-option {
+  position: relative;
+  border: 1.5px solid v.$border;
+  border-radius: v.$radius-sm;
+  overflow: hidden;
+
+  &--mine { border-color: v.$accent; }
+
+  &__bar {
+    position: absolute;
+    inset: 0 auto 0 0;
+    background: rgba(v.$accent, 0.12);
+    transition: width 0.4s ease;
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 10px 14px;
+  }
+
+  &__text {
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  &__count {
+    font-size: 13px;
+    font-weight: 600;
+    color: v.$text-secondary;
+  }
+
+  &__mine {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: v.$accent-dark;
+  }
+
+  &__vote { padding: 6px 12px; font-size: 13px; }
+}
+
+.club-book__set-deadline {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  color: v.$accent-dark;
+
+  input {
+    padding: 4px 6px;
+    border: 1.5px solid v.$border;
+    border-radius: v.$radius-sm;
+    font-size: 12px;
+  }
 }

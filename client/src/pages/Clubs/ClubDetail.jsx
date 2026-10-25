@@ -6,6 +6,7 @@ import Modal from '../../components/Modal/Modal';
 import ClubForm from './ClubForm';
 import ClubMembers from './ClubMembers';
 import ClubBooks from './ClubBooks';
+import ClubPolls from './ClubPolls';
 import { CLUB_TYPES } from './constants';
 import './Clubs.scss';
 
@@ -16,6 +17,7 @@ export default function ClubDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [editOpen, setEditOpen] = useState(false);
+  const [booksVersion, setBooksVersion] = useState(0);
 
   const fetchClub = useCallback(async () => {
     try {
@@ -126,7 +128,8 @@ export default function ClubDetail() {
             <p className="club-detail__muted">Власник: {club.owner_name}</p>
           </section>
 
-          {isActive && <ClubBooks club={club} />}
+          {isActive && <ClubPolls club={club} onClosed={() => setBooksVersion(v => v + 1)} />}
+          {isActive && <ClubBooks key={booksVersion} club={club} />}
         </div>
 
         <ClubMembers club={club} onChange={fetchClub} />

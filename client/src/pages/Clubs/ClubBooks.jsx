@@ -36,6 +36,15 @@ export default function ClubBooks({ club }) {
     fetchBooks();
   };
 
+  const setDeadline = async (book, deadline) => {
+    try {
+      await api.put(`/clubs/${club.id}/books/${book.id}`, { deadline });
+      fetchBooks();
+    } catch (err) {
+      window.alert(err.response?.data?.message || 'Не вдалося зберегти дедлайн.');
+    }
+  };
+
   const handleDelete = async (book) => {
     if (!window.confirm(`Прибрати "${book.title}" зі списку клубу?`)) return;
     await api.delete(`/clubs/${club.id}/books/${book.id}`);
@@ -85,6 +94,12 @@ export default function ClubBooks({ club }) {
                   </span>
                 </div>
                 <div className="club-book__dates">
+                  {editable && !book.deadline && (
+                    <label className="club-book__set-deadline">
+                      Дочитати до
+                      <input type="date" min={todayISO()} onChange={e => e.target.value && setDeadline(book, e.target.value)} />
+                    </label>
+                  )}
                   {book.deadline && (
                     <span className={overdue ? 'club-book__overdue' : ''}>
                       <CalendarDays size={13} /> до {formatDate(book.deadline)}
