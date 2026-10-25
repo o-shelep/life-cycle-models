@@ -4,7 +4,8 @@ import { ArrowLeft, Lock, Globe, Pencil, Trash2, LogOut } from 'lucide-react';
 import api from '../../api/axios';
 import Modal from '../../components/Modal/Modal';
 import ClubForm from './ClubForm';
-import { CLUB_TYPES, CLUB_ROLES } from './constants';
+import ClubMembers from './ClubMembers';
+import { CLUB_TYPES } from './constants';
 import './Clubs.scss';
 
 export default function ClubDetail() {
@@ -39,6 +40,11 @@ export default function ClubDetail() {
     } catch (err) {
       window.alert(err.response?.data?.message || 'Не вдалося приєднатися до клубу.');
     }
+  };
+
+  const handleDecline = async () => {
+    await api.post(`/clubs/${id}/invitations/decline`);
+    fetchClub();
   };
 
   const handleLeave = async () => {
@@ -98,6 +104,9 @@ export default function ClubDetail() {
                 : club.type === 'open' ? 'Приєднатися' : 'Надіслати запит'}
             </button>
           )}
+          {club.my_status === 'invited' && (
+            <button className="btn btn--secondary" onClick={handleDecline}>Відхилити запрошення</button>
+          )}
           {club.my_status === 'requested' && <span className="club-card__pending">Запит очікує підтвердження</span>}
         </div>
       </div>
@@ -115,22 +124,7 @@ export default function ClubDetail() {
           <p className="club-detail__muted">Власник: {club.owner_name}</p>
         </section>
 
-        <section className="club-section">
-          <h2>Учасники ({club.members.length})</h2>
-          {club.members.length === 0 ? (
-            <p className="club-detail__muted">Список учасників бачать лише члени закритого клубу.</p>
-          ) : (
-            <ul className="member-list">
-              {club.members.map(m => (
-                <li key={m.user_id} className="member-list__item">
-                  <span className="member-list__avatar">{m.username[0].toUpperCase()}</span>
-                  <span className="member-list__name">{m.username}</span>
-                  <span className={`member-list__role member-list__role--${m.role}`}>{CLUB_ROLES[m.role]}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+        <ClubMembers club={club} onChange={fetchClub} />
       </div>
 
       <Modal isOpen={editOpen} onClose={() => setEditOpen(false)} title="Редагувати клуб">
