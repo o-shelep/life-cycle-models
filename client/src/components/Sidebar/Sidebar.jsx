@@ -1,12 +1,13 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { BookOpen, PenLine, Tag, User, Library, LogOut } from 'lucide-react';
+import { BookOpen, PenLine, Tag, User, Users, Library, LogOut } from 'lucide-react';
 import './Sidebar.scss';
 
 const navItems = [
   { to: '/', icon: <BookOpen size={18} />, label: 'Книжки', end: true },
   { to: '/authors', icon: <PenLine size={18} />, label: 'Автори' },
   { to: '/genres', icon: <Tag size={18} />, label: 'Жанри' },
+  { to: '/clubs', icon: <Users size={18} />, label: 'Клуби' },
   { to: '/profile', icon: <User size={18} />, label: 'Профіль' },
 ];
 
@@ -38,7 +39,7 @@ export default function Sidebar() {
           >
             <span className="nav-icon">{item.icon}</span>
 
-            {item.label}
+            <span className="nav-label">{item.label}</span>
           </NavLink>
         ))}
       </nav>
@@ -52,7 +53,7 @@ export default function Sidebar() {
         </Link>
         <button className="sidebar__logout" onClick={handleLogout}>
           <LogOut size={16} />
-          Вийти
+          <span className="nav-label">Вийти</span>
         </button>
       </div>
     </aside>
