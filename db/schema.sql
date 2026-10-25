@@ -1,6 +1,12 @@
 CREATE DATABASE IF NOT EXISTS books_manager CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE books_manager;
 
+DROP TABLE IF EXISTS club_reviews;
+DROP TABLE IF EXISTS book_votes;
+DROP TABLE IF EXISTS club_books;
+DROP TABLE IF EXISTS club_polls;
+DROP TABLE IF EXISTS club_members;
+DROP TABLE IF EXISTS clubs;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS genres;
@@ -44,3 +50,5 @@ CREATE TABLE books (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- Reading clubs tables live in db/migrations/001_clubs.sql
+SOURCE db/migrations/001_clubs.sql;
