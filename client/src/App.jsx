@@ -8,13 +8,15 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Authors from './pages/Authors/Authors';
 import Genres from './pages/Genres/Genres';
 import Profile from './pages/Profile/Profile';
+import Clubs from './pages/Clubs/Clubs';
+import ClubDetail from './pages/Clubs/ClubDetail';
 import './styles/global.scss';
 
 function ProtectedLayout() {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="app-layout">
       <Sidebar />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div className="app-layout__main">
         <Outlet />
       </div>
     </div>
@@ -32,6 +34,8 @@ export default function App() {
             <Route path='/' element={<Books />} />
             <Route path='/authors' element={<Authors />} />
             <Route path='/genres' element={<Genres />} />
+            <Route path='/clubs' element={<Clubs />} />
+            <Route path='/clubs/:id' element={<ClubDetail />} />
             <Route path='/profile' element={<Profile />} />
           </Route>
         </Route>

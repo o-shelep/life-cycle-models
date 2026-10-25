@@ -134,3 +134,52 @@
     }
   }
 }
+
+// On narrow screens the sidebar turns into a compact top bar with icon-only links.
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 8px;
+
+    &__logo {
+      padding: 0;
+      border-bottom: none;
+
+      .logo-text { display: none; }
+    }
+
+    &__nav {
+      flex-direction: row;
+      justify-content: center;
+      padding: 0;
+      gap: 2px;
+    }
+
+    &__nav-link {
+      padding: 9px;
+
+      .nav-label { display: none; }
+    }
+
+    &__footer {
+      padding: 0;
+      border-top: none;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+    }
+
+    &__username { display: none; }
+
+    &__logout {
+      width: auto;
+      padding: 9px;
+
+      .nav-label { display: none; }
+    }
+  }
+}
