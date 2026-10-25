@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { getAll, getOne, create, update, remove, join, leave } = require('../controllers/clubsController');
 const members = require('../controllers/clubMembersController');
+const books = require('../controllers/clubBooksController');
 const authenticate = require('../middleware/auth');
 const { loadClub, requireRole } = require('../middleware/clubAccess');
 
@@ -36,5 +37,14 @@ router.post('/:id/requests/:userId/reject', loadClub, requireRole('owner', 'mode
 router.put('/:id/members/:userId/role', loadClub, requireRole('owner'), members.changeRole);
 
 router.delete('/:id/members/:userId', loadClub, requireRole('owner', 'moderator'), members.removeMember);
+
+// Shared reading list (FR-3, Task-3)
+router.get('/:id/books', loadClub, requireRole(), books.getAll);
+
+router.post('/:id/books', loadClub, requireRole(), books.create);
+
+router.put('/:id/books/:bookId', loadClub, requireRole(), books.update);
+
+router.delete('/:id/books/:bookId', loadClub, requireRole(), books.remove);
 
 module.exports = router;
