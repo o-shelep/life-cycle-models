@@ -5,6 +5,7 @@ import api from '../../api/axios';
 import Modal from '../../components/Modal/Modal';
 import ClubForm from './ClubForm';
 import ClubMembers from './ClubMembers';
+import ClubBooks from './ClubBooks';
 import { CLUB_TYPES } from './constants';
 import './Clubs.scss';
 
@@ -112,17 +113,21 @@ export default function ClubDetail() {
       </div>
 
       <div className="clubs-page__content club-detail__layout">
-        <section className="club-section">
-          <h2>Про клуб</h2>
-          <p className="club-detail__text">{club.description || 'Опис поки не додано.'}</p>
-          {club.rules && (
-            <>
-              <h3>Правила участі</h3>
-              <p className="club-detail__text">{club.rules}</p>
-            </>
-          )}
-          <p className="club-detail__muted">Власник: {club.owner_name}</p>
-        </section>
+        <div className="club-detail__column">
+          <section className="club-section">
+            <h2>Про клуб</h2>
+            <p className="club-detail__text">{club.description || 'Опис поки не додано.'}</p>
+            {club.rules && (
+              <>
+                <h3>Правила участі</h3>
+                <p className="club-detail__text">{club.rules}</p>
+              </>
+            )}
+            <p className="club-detail__muted">Власник: {club.owner_name}</p>
+          </section>
+
+          {isActive && <ClubBooks club={club} />}
+        </div>
 
         <ClubMembers club={club} onChange={fetchClub} />
       </div>
