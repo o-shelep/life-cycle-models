@@ -3,6 +3,7 @@ const { getAll, getOne, create, update, remove, join, leave } = require('../cont
 const members = require('../controllers/clubMembersController');
 const books = require('../controllers/clubBooksController');
 const polls = require('../controllers/clubPollsController');
+const reviews = require('../controllers/clubReviewsController');
 const authenticate = require('../middleware/auth');
 const { loadClub, requireRole } = require('../middleware/clubAccess');
 
@@ -58,5 +59,12 @@ router.post('/:id/polls/:pollId/options', loadClub, requireRole(), polls.propose
 router.post('/:id/polls/:pollId/vote', loadClub, requireRole(), polls.vote);
 
 router.post('/:id/polls/:pollId/close', loadClub, requireRole('owner', 'moderator'), polls.close);
+
+// Club reviews and ratings (FR-5)
+router.get('/:id/books/:bookId/reviews', loadClub, requireRole(), reviews.getAll);
+
+router.post('/:id/books/:bookId/reviews', loadClub, requireRole(), reviews.upsert);
+
+router.delete('/:id/books/:bookId/reviews/:reviewId', loadClub, requireRole(), reviews.remove);
 
 module.exports = router;

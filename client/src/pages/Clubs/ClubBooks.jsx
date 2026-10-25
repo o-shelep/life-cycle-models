@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { BookOpen, CalendarDays, Trash2 } from 'lucide-react';
+import { BookOpen, CalendarDays, Trash2, MessageSquare, Star } from 'lucide-react';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
 import Modal from '../../components/Modal/Modal';
 import ClubBookForm from './ClubBookForm';
+import ClubReviews from './ClubReviews';
 import { CLUB_BOOK_STATUSES, CLUB_BOOK_FILTERS, formatDate, todayISO } from './constants';
 
 export default function ClubBooks({ club }) {
@@ -12,6 +13,7 @@ export default function ClubBooks({ club }) {
   const [status, setStatus] = useState('');
   const [until, setUntil] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [reviewBook, setReviewBook] = useState(null);
 
   const { user } = useAuth();
   const canManage = ['owner', 'moderator'].includes(club.my_role);
@@ -107,6 +109,10 @@ export default function ClubBooks({ club }) {
                   )}
                   {book.discussion_date && <span>обговорення {formatDate(book.discussion_date)}</span>}
                 </div>
+                <button className="club-book__reviews" onClick={() => setReviewBook(book)} title="Рецензії та оцінки">
+                  <MessageSquare size={14} /> {book.reviews_count}
+                  {book.average_rating && <><Star size={13} fill="currentColor" /> {book.average_rating}</>}
+                </button>
                 <div className="club-book__actions">
                   {editable ? (
                     <select value={book.status} onChange={e => changeStatus(book, e.target.value)}>
@@ -135,6 +141,10 @@ export default function ClubBooks({ club }) {
           onSaved={() => { setModalOpen(false); fetchBooks(); }}
           onCancel={() => setModalOpen(false)}
         />
+      </Modal>
+
+      <Modal isOpen={!!reviewBook} onClose={() => setReviewBook(null)} title={reviewBook ? `Відгуки: ${reviewBook.title}` : ''}>
+        {reviewBook && <ClubReviews club={club} book={reviewBook} onChange={fetchBooks} />}
       </Modal>
     </section>
   );

@@ -658,3 +658,75 @@
     font-size: 12px;
   }
 }
+
+// ── Reviews ───────────────────────────────────────────────────────────────────
+.club-book__reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border: 1.5px solid v.$border;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: v.$text-secondary;
+  transition: all v.$transition;
+
+  svg:nth-of-type(2) { color: v.$accent; margin-left: 4px; }
+
+  &:hover { border-color: v.$accent; color: v.$accent-dark; }
+}
+
+.club-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    > div { display: flex; flex-direction: column; gap: 2px; }
+  }
+
+  &__avg {
+    font-size: 32px;
+    font-weight: 700;
+    color: v.$text-primary;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.club-review {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1.5px solid v.$border;
+  border-radius: v.$radius-sm;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &__text {
+    font-size: 14px;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+  }
+}

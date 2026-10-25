@@ -29,7 +29,9 @@ function clean(value) {
 const SELECT_BOOKS = `
   SELECT cb.*, DATE_FORMAT(cb.deadline, '%Y-%m-%d') AS deadline,
          DATE_FORMAT(cb.discussion_date, '%Y-%m-%d') AS discussion_date,
-         u.username AS added_by_name
+         u.username AS added_by_name,
+         (SELECT COUNT(*) FROM club_reviews r WHERE r.club_book_id = cb.id) AS reviews_count,
+         (SELECT ROUND(AVG(r.rating), 1) FROM club_reviews r WHERE r.club_book_id = cb.id) AS average_rating
   FROM club_books cb
   LEFT JOIN users u ON u.id = cb.added_by`;
 
