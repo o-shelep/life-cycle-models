@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { getAll, getOne, create, update, remove, join, leave } = require('../controllers/clubsController');
 const members = require('../controllers/clubMembersController');
 const books = require('../controllers/clubBooksController');
+const polls = require('../controllers/clubPollsController');
 const authenticate = require('../middleware/auth');
 const { loadClub, requireRole } = require('../middleware/clubAccess');
 
@@ -46,5 +47,16 @@ router.post('/:id/books', loadClub, requireRole(), books.create);
 router.put('/:id/books/:bookId', loadClub, requireRole(), books.update);
 
 router.delete('/:id/books/:bookId', loadClub, requireRole(), books.remove);
+
+// Voting for the book of the month (FR-4, Task-4)
+router.get('/:id/polls', loadClub, requireRole(), polls.getAll);
+
+router.post('/:id/polls', loadClub, requireRole('owner', 'moderator'), polls.create);
+
+router.post('/:id/polls/:pollId/options', loadClub, requireRole(), polls.propose);
+
+router.post('/:id/polls/:pollId/vote', loadClub, requireRole(), polls.vote);
+
+router.post('/:id/polls/:pollId/close', loadClub, requireRole('owner', 'moderator'), polls.close);
 
 module.exports = router;
